@@ -1,10 +1,8 @@
 // #region 'Importing'
-// import { useState } from "react"
-// import { Route, Routes, Navigate } from "react-router-dom"
+import { Routes, Route, Navigate} from 'react-router-dom'
+
 import MainMenu from './Pages/MainMenu'
-// import SideChatList from './Pages/SideChatList'
-// import MainMessageList from './Pages/MainMessagesList'
-// import Login from './Pages/Login'
+import Login from './Pages/Login'
 // #endregion
 
 export default function App() {
@@ -13,7 +11,31 @@ export default function App() {
   return (
 
       <>
-        <MainMenu />
+
+        {
+          // #region 'Routes of App'
+        }
+        <Routes>
+
+          <Route
+            index
+            element={<Navigate replace to="/login" />}
+          />
+
+          <Route 
+            path='/main' 
+            element = {<MainMenu />}>
+          </Route>
+
+          <Route 
+            path='/login' 
+            element = {<Login />}>
+          </Route>
+
+        </Routes>
+        {
+          //#endregion
+        }
   
       </>
 
