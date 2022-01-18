@@ -1,7 +1,9 @@
-import SideChatList from '../Components/SideChatList'
-import MainMessagesList from '../Components/MainMessagesList'
+import SideChatList from '../Components/Main/SideChatList'
+import MainMessagesList from '../Components/Main/MainMessagesList'
 
-function MainMenu() {
+function MainMenu(props) {
+
+    const {messages, conversations} = props 
 
     return (
 
@@ -39,7 +41,9 @@ function MainMenu() {
                     </form>
 
                     {/* <!-- Side Chat List goes here. Check side-chat-list.html--><!--  --> */}
-                    <SideChatList />
+                    <SideChatList 
+                        conversations = {conversations}
+                    />
 
                 </aside>
 
@@ -54,7 +58,9 @@ function MainMenu() {
                     {/* <!-- The Messages List will go here. Check main-messages-list.html--> */}
                     <ul className="conversation__messages">
 
-                        <MainMessagesList />
+                        <MainMessagesList 
+                            messages = {messages}
+                        />
 
                     </ul>
 
@@ -63,27 +69,27 @@ function MainMenu() {
 
                         <form className="panel conversation__message-box">
 
-                        <input
-                            type="text"
-                            placeholder="Type a message"
-                            rows='1'
-                            value=""
-                        />
-                        
-                        <button type="submit">
-                            {/* <!-- This is the send button --> */}
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                width="24"
-                                height="24"
-                            >
-                                <path
-                                    fill="currentColor"
-                                    d="M1.101 21.757L23.8 12.028 1.101 2.3l.011 7.912 13.623 1.816-13.623 1.817-.011 7.912z"
-                                ></path>
-                            </svg>
-                        </button>
+                            <input
+                                type="text"
+                                placeholder="Type a message"
+                                rows='1'
+                                value=""
+                            />
+                            
+                            <button type="submit">
+                                {/* <!-- This is the send button --> */}
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                    height="24"
+                                >
+                                    <path
+                                        fill="currentColor"
+                                        d="M1.101 21.757L23.8 12.028 1.101 2.3l.011 7.912 13.623 1.816-13.623 1.817-.011 7.912z"
+                                    ></path>
+                                </svg>
+                            </button>
 
                         </form>
 

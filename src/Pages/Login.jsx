@@ -1,4 +1,10 @@
-function Login() {
+import User from '../Components/Login/User'
+import UserButton from '../Components/Login/UserButton'
+
+
+function Login(props) {
+
+    const {users} = props 
 
     return (
 
@@ -12,48 +18,17 @@ function Login() {
 
                     <ul>
 
-                        <li>
-                            <button className="user-selection">
-                                <img
-                                className="avatar"
-                                width="50"
-                                height="50"
-                                src="https://robohash.org/1"
-                                alt=""
-                                />
-                                <h3>John Doe</h3>
-                            </button>
-                        </li>
+                        {users.map(user => 
 
-                        <li>
-                            <button className="user-selection">
-                                <img
-                                className="avatar"
-                                width="50"
-                                height="50"
-                                src="https://robohash.org/2"
-                                alt=""
+                                <User 
+                                    user = {user}
                                 />
-                                <h3>Tin Man</h3>
-                            </button>
-                        </li>
+                        
+                            )
 
-                        <li>
-                            <button className="user-selection">
-                                <img
-                                className="avatar"
-                                width="50"
-                                height="50"
-                                src="https://robohash.org/3"
-                                alt=""
-                                />
-                                <h3>Carl T-800</h3>
-                            </button>
-                        </li>
+                        }
 
-                        <li>
-                            <button className="user-selection"><h3>+ Add a new user</h3></button>
-                        </li>
+                        <UserButton />
 
                     </ul>
 

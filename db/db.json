@@ -29,6 +29,13 @@
       "id": 4
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "userId": 1,
+      "messageText": "Hello",
+      "conversationId": 3,
+      "id": 1
+    }
+  ],
   "conversations": []
 }

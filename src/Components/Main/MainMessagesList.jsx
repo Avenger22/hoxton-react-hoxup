@@ -1,5 +1,7 @@
-function MainMessagesList() {
+function MainMessagesList(props) {
 
+    const {messages} = props
+    
     return (
 
         <>
