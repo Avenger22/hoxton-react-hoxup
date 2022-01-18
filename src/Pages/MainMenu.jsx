@@ -1,3 +1,6 @@
+import SideChatList from '../Components/SideChatList'
+import MainMessagesList from '../Components/MainMessagesList'
+
 function MainMenu() {
 
     return (
@@ -9,33 +12,35 @@ function MainMenu() {
                 {/* <!-- Side Panel --> */}
                 <aside>
 
-                {/* <!-- Side Header --> */}
-                <header className="panel">
+                    {/* <!-- Side Header --> */}
+                    <header className="panel">
 
-                    <img
-                        className="avatar"
-                        width="50"
-                        height="50"
-                        src="https://robohash.org/2"
-                        alt=""
-                    />
-                    <h3>Tin Man</h3>
+                        <img
+                            className="avatar"
+                            width="50"
+                            height="50"
+                            src="https://robohash.org/2"
+                            alt=""
+                        />
+                        <h3>Tin Man</h3>
 
-                </header>
+                    </header>
 
-                {/* <!-- Search form --> */}
-                <form className="aside__search-container">
+                    {/* <!-- Search form --> */}
+                    <form className="aside__search-container">
 
-                    <input
-                        type="search"
-                        name="messagesSearch"
-                        placeholder="Search chats"
-                        value=""
-                    />
+                        <input
+                            type="search"
+                            name="messagesSearch"
+                            placeholder="Search chats"
+                            value=""
+                        />
 
-                </form>
+                    </form>
 
-                {/* <!-- Side Chat List goes here. Check side-chat-list.html--><!--  --> */}
+                    {/* <!-- Side Chat List goes here. Check side-chat-list.html--><!--  --> */}
+                    <SideChatList />
+
                 </aside>
 
                 {/* <!-- Main Chat Section --> */}
@@ -48,6 +53,8 @@ function MainMenu() {
 
                     {/* <!-- The Messages List will go here. Check main-messages-list.html--> */}
                     <ul className="conversation__messages">
+
+                        <MainMessagesList />
 
                     </ul>
 
