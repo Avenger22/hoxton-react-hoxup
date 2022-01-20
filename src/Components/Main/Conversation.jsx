@@ -1,22 +1,25 @@
+import { useNavigate } from "react-router-dom"
+
 function Conversation(props) {
 
-    const {talkingToUser} = props
-    
+    const {talkingToUser, id} = props
+    const navigate = useNavigate()
+
     return (
 
         <>
 
             <li>
-                <button className="chat-button">
+                <button className="chat-button" onClick={() => navigate(`/logged-in/${id}`)}>
                     <img
                         className="avatar"
                         height="50"
                         width="50"
                         alt=""
-                        src="https://robohash.org/2"
+                        src={talkingToUser.avatar}
                     />
                     <div>
-                        <h3>Tin Man</h3>
+                        {talkingToUser.firstName} {talkingToUser.lastName}
                         <p>Last message</p>
                     </div>
                 </button>

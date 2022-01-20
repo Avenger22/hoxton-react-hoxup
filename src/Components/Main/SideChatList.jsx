@@ -5,6 +5,19 @@ function SideChatList(props) {
 
     const {conversations, currentUser, users} = props
 
+    function talkingConversation({ participantId, userId, id }) {
+
+        const isCurrentUserSameAsUserId = currentUser.id === userId;
+
+        const talkingToId = isCurrentUserSameAsUserId
+            ? participantId
+            : userId;
+
+        const talkingToUser = users.find((user) => user.id === talkingToId);
+
+        return talkingToUser
+    }
+
     return (
 
         <>
@@ -14,20 +27,13 @@ function SideChatList(props) {
                 <NewChatBtn />
 
                 {
-                    conversations.map(conversation => {
-
-                        // which id am I talking to
-                        const talkingToId =
-                        currentUser.id === conversation.userId
-                        ? conversation.participantId
-                        : conversation.userId
-
-                        // what are their details?
-                        const talkingToUser = users.find(user => user.id === talkingToId)
+                    conversations.map(({ participantId, userId, id }) => {
                         
-                            // <Conversation 
-                            //     talkingToUser = {talkingToUser}
-                            // />
+                        return <Conversation 
+                            talkingToUser = {talkingConversation({ participantId, userId, id })}
+                            id = {id}
+                            key = {id}
+                        />
                         
                     })  
 

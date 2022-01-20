@@ -50,6 +50,7 @@ function App() {
   useEffect(getMessagesFromServer, [])
   // #endregion
 
+  // #region 'Conditionals and Helper functions'
   const navigate = useNavigate()
 
   function logIn (user) {
@@ -68,7 +69,8 @@ function App() {
     setCurrentUser(null)
 
   }
-
+  // #endregion
+  
   // #region 'Returning Html'
   return (
 
@@ -128,6 +130,9 @@ function App() {
           //#endregion
         }
   
+        {
+          // #region 'Modals'
+        }
         {modal === 'newUser' ? (
 
           <NewUser 
@@ -135,8 +140,12 @@ function App() {
             users = {users}
             setUsers = {setUsers}
           />
-          
+
         ) : null}
+
+        {
+          // #endregion
+        }
 
       </>
 
