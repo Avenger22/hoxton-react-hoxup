@@ -25,9 +25,9 @@ function SideChatList(props) {
                         // what are their details?
                         const talkingToUser = users.find(user => user.id === talkingToId)
                         
-                            <Conversation 
-                                talkingToUser = {talkingToUser}
-                            />
+                            // <Conversation 
+                            //     talkingToUser = {talkingToUser}
+                            // />
                         
                     })  
 

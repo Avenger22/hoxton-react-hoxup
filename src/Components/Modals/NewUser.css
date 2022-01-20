@@ -1,0 +1,25 @@
+/* #region 'NEW-USER-MODAL' */
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #00000040;
+    display: grid;
+    place-items: center;
+
+    z-index: 15;
+}
+
+.modal {
+    background-color: white;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.modal button {
+    background-color: royalblue;
+}
+/* #endregion */

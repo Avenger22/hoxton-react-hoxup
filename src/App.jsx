@@ -6,6 +6,7 @@ import { useState } from 'react'
 import MainMenu from './Pages/MainMenu'
 import Login from './Pages/Login'
 import Error from './Pages/Error'
+import NewUser from './Components/Modals/NewUser'
 // #endregion
 
 function App() {
@@ -127,6 +128,16 @@ function App() {
           //#endregion
         }
   
+        {modal === 'newUser' ? (
+
+          <NewUser 
+            setModal = {setModal}
+            users = {users}
+            setUsers = {setUsers}
+          />
+          
+        ) : null}
+
       </>
 
   )
