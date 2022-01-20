@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 
 function Conversation(props) {
 
-    const {talkingToUser, id} = props
+    const {talkingToUser} = props
     const navigate = useNavigate()
 
     return (
@@ -10,7 +10,7 @@ function Conversation(props) {
         <>
 
             <li>
-                <button className="chat-button" onClick={() => navigate(`/logged-in/${id}`)}>
+                <button className="chat-button" onClick={() => navigate(`/logged-in/${talkingToUser.id}`)}>
                     <img
                         className="avatar"
                         height="50"

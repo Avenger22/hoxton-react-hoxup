@@ -44,5 +44,21 @@
       "id": 1
     }
   ],
-  "conversations": []
+  "conversations": [
+    {
+      "userId": 1,
+      "participantId": 2,
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "participantId": 3,
+      "id": 2
+    },
+    {
+      "userId": 3,
+      "participantId": 1,
+      "id": 3
+    }
+  ]
 }
