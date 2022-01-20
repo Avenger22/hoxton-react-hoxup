@@ -1,8 +1,9 @@
 import Conversation from '../../Components/Main/Conversation'
+import NewChatBtn from './NewChatBtn'
 
 function SideChatList(props) {
 
-    const {conversations} = props
+    const {conversations, currentUser, users} = props
 
     return (
 
@@ -10,19 +11,25 @@ function SideChatList(props) {
 
             <ul>
 
-                {/* <!-- This first item should always be present --> */}
-                <li>
-                    <button className="chat-button">
-                        <div><h3>+ Start a new Chat</h3></div>
-                    </button>
-                </li>
+                <NewChatBtn />
 
                 {
-                    conversations.map(conv => 
+                    conversations.map(conversation => {
+
+                        // which id am I talking to
+                        const talkingToId =
+                        currentUser.id === conversation.userId
+                        ? conversation.participantId
+                        : conversation.userId
+
+                        // what are their details?
+                        const talkingToUser = users.find(user => user.id === talkingToId)
                         
-                            <Conversation />
+                            <Conversation 
+                                talkingToUser = {talkingToUser}
+                            />
                         
-                        )
+                    })  
 
                 }
 

@@ -1,9 +1,54 @@
+// #region 'Importing'
 import SideChatList from '../Components/Main/SideChatList'
 import MainMessagesList from '../Components/Main/MainMessagesList'
 
+import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+// #endregion
+
 function MainMenu(props) {
 
-    const {messages, conversations} = props 
+    const {messages, conversations, logOut, users, currentUser, setConversations} = props
+    const [currentConversation, setCurrentConversation] = useState(null)
+
+    const params = useParams()
+    const navigate = useNavigate()
+    
+    useEffect(() => {
+
+        if (currentUser === null) {
+            navigate('/')
+        }
+
+      }, [currentUser, navigate]) //dependencies if currentUser changes then i want also this to depend
+
+    useEffect(() => {
+
+    if (params.conversationId) {
+        fetch(
+        `http://localhost:4000/conversations/${params.conversationId}?_embed=messages`
+        )
+        .then(resp => resp.json())
+        .then(conversation => setCurrentConversation(conversation))
+    }
+
+    }, [params.conversationId]) //array of dependencies
+
+    useEffect(() => {
+
+    if (currentUser === null) { 
+        return
+    } //here is the current user is not set then we return nothing so we dont execute the useEffect below
+
+    fetch(`http://localhost:4000/conversations?userId=${currentUser.id}`)
+        .then(resp => resp.json())
+        .then(conversations => setConversations(conversations))
+
+    }, [currentUser])
+
+    if (currentUser === null) {
+    return <h1>Not signed in...</h1>
+    }
 
     return (
 
@@ -21,10 +66,12 @@ function MainMenu(props) {
                             className="avatar"
                             width="50"
                             height="50"
-                            src="https://robohash.org/2"
+                            src={currentUser.avatar}
                             alt=""
                         />
-                        <h3>Tin Man</h3>
+                        <h3>{currentUser.firstName}</h3>
+                        <button onClick={() => logOut()}>Log Out</button>
+
 
                     </header>
 
@@ -43,11 +90,16 @@ function MainMenu(props) {
                     {/* <!-- Side Chat List goes here. Check side-chat-list.html--><!--  --> */}
                     <SideChatList 
                         conversations = {conversations}
+                        currentUser = {currentUser}
+                        users = {users}
                     />
 
                 </aside>
 
                 {/* <!-- Main Chat Section --> */}
+
+                {params.conversationId ? (
+
                 <main className="conversation">
 
                     {/* <!-- Chat header --> */}
@@ -72,11 +124,12 @@ function MainMenu(props) {
                             <input
                                 type="text"
                                 placeholder="Type a message"
-                                rows='1'
+                                rows="1"
                                 value=""
                             />
                             
                             <button type="submit">
+
                                 {/* <!-- This is the send button --> */}
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -89,6 +142,7 @@ function MainMenu(props) {
                                         d="M1.101 21.757L23.8 12.028 1.101 2.3l.011 7.912 13.623 1.816-13.623 1.817-.011 7.912z"
                                     ></path>
                                 </svg>
+
                             </button>
 
                         </form>
@@ -96,6 +150,8 @@ function MainMenu(props) {
                     </footer>
 
                 </main>
+
+            ) : null}
 
             </div>
 

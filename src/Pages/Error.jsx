@@ -2,9 +2,9 @@ function Error() {
 
     return (
 
-        <>
-            <h3>Error 404</h3>
-        </>
+        <div className='main-wrapper not-found'>
+            <h1>Page not found</h1>
+        </div>
 
     )
 

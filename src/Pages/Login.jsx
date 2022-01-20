@@ -4,7 +4,7 @@ import UserButton from '../Components/Login/UserButton'
 
 function Login(props) {
 
-    const {users} = props 
+    const {users, setModal, logIn} = props 
 
     return (
 
@@ -21,14 +21,18 @@ function Login(props) {
                         {users.map(user => 
 
                                 <User 
+                                    key = {user.id}
                                     user = {user}
+                                    logIn = {logIn}
                                 />
                         
                             )
 
                         }
 
-                        <UserButton />
+                        <UserButton 
+                            setModal = {setModal}
+                        />
 
                     </ul>
 

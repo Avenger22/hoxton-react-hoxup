@@ -1,7 +1,7 @@
 function Conversation(props) {
 
-    const {conv} = props
-
+    const {talkingToUser} = props
+    
     return (
 
         <>
@@ -16,7 +16,7 @@ function Conversation(props) {
                         src="https://robohash.org/2"
                     />
                     <div>
-                        <h3>{conv.}</h3>
+                        <h3>Tin Man</h3>
                         <p>Last message</p>
                     </div>
                 </button>
