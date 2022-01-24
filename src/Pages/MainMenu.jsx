@@ -6,11 +6,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 // #endregion
 
-function MainMenu(props) {
+function MainMenu({messages, conversations, logOut, users, 
+    currentUser, setConversations, modal, setModal}) {
 
     // #region 'State and Decounstructing Objects'
-    const {messages, conversations, logOut, users, 
-        currentUser, setConversations, setModal} = props
+    // const {messages, conversations, logOut, users, 
+    //     currentUser, setConversations, setModal} = props
 
     const [currentConversation, setCurrentConversation] = useState(null)
 
@@ -37,7 +38,7 @@ function MainMenu(props) {
 
     useEffect(() => {
         if (currentUser === null) { 
-            return
+            return;
         } //here is the current user is not set then we return nothing so we dont execute the useEffect below
 
         fetch(`http://localhost:4000/conversations?userId=${currentUser.id}`)
@@ -45,7 +46,7 @@ function MainMenu(props) {
             .then(conversations => setConversations(conversations))
 
         }, [currentUser])
-    }
+
     // #endregion
 
     const usersIHaveNotTalkedToYet = users.filter(user => {
@@ -263,5 +264,6 @@ function MainMenu(props) {
     )
 
 }
+
 
 export default MainMenu

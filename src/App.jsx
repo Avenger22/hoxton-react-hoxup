@@ -103,6 +103,7 @@ function App() {
                 users = {users}
                 currentUser = {currentUser}
                 setConversations ={setConversations}
+                modal = {modal}
                 setModal = {setModal}/>
           }>
           </Route>
@@ -127,6 +128,7 @@ function App() {
               users = {users}
               currentUser = {currentUser}
               setConversations ={setConversations}
+              modal = {modal}
               setModal = {setModal} />
             }
         />
