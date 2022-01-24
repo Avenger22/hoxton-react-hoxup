@@ -8,46 +8,81 @@ import { useEffect, useState } from 'react'
 
 function MainMenu(props) {
 
-    const {messages, conversations, logOut, users, currentUser, setConversations} = props
+    // #region 'State and Decounstructing Objects'
+    const {messages, conversations, logOut, users, 
+        currentUser, setConversations, setModal} = props
+
     const [currentConversation, setCurrentConversation] = useState(null)
 
     const params = useParams()
     const navigate = useNavigate()
-    
-    useEffect(() => {
+    // #endregion
 
+    // #region 'Use Effect on some things'
+    useEffect(() => {
         if (currentUser === null) {
             navigate('/')
         }
-
       }, [currentUser, navigate]) //dependencies if currentUser changes then i want also this to depend
 
     useEffect(() => {
-
-    if (params.conversationId) {
-        fetch(
-        `http://localhost:4000/conversations/${params.conversationId}?_embed=messages`
-        )
-        .then(resp => resp.json())
-        .then(conversation => setCurrentConversation(conversation))
-    }
-
+        if (params.conversationId) {
+            fetch(
+            `http://localhost:4000/conversations/${params.conversationId}?_embed=messages`
+            )
+            .then(resp => resp.json())
+            .then(conversation => setCurrentConversation(conversation))
+        }
     }, [params.conversationId]) //array of dependencies
 
     useEffect(() => {
+        if (currentUser === null) { 
+            return
+        } //here is the current user is not set then we return nothing so we dont execute the useEffect below
 
-    if (currentUser === null) { 
-        return
-    } //here is the current user is not set then we return nothing so we dont execute the useEffect below
+        fetch(`http://localhost:4000/conversations?userId=${currentUser.id}`)
+            .then(resp => resp.json())
+            .then(conversations => setConversations(conversations))
 
-    fetch(`http://localhost:4000/conversations?userId=${currentUser.id}`)
-        .then(resp => resp.json())
-        .then(conversations => setConversations(conversations))
+        }, [currentUser])
+    }
+    // #endregion
 
-    }, [currentUser])
+    const usersIHaveNotTalkedToYet = users.filter(user => {
+       
+        if (currentUser && user.id === currentUser.id) return false
+    
+        for (const conversation of conversations) {
+          if (conversation.userId === user.id) return false
+          if (conversation.participantId === user.id) return false
+        }
+       
+        return true
+        
+      })
+    
+      function createConversation (participantId) {
+
+        fetch('http://localhost:4000/conversations', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            userId: currentUser.id,
+            participantId: participantId
+          })
+        })
+          .then(resp => resp.json())
+          .then(newConversation => {
+            setConversations([...conversations, newConversation])
+            setModal('')
+          })
+
+      }
 
     if (currentUser === null) {
-    return <h1>Not signed in...</h1>
+        return <h1>Not signed in...</h1>
     }
 
     return (
@@ -103,9 +138,7 @@ function MainMenu(props) {
                 <main className="conversation">
 
                     {/* <!-- Chat header --> */}
-                    <header className="panel">
-
-                    </header>
+                    <header className="panel"></header>
 
                     {/* <!-- The Messages List will go here. Check main-messages-list.html--> */}
                     <ul className="conversation__messages">

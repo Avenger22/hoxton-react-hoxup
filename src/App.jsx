@@ -14,6 +14,7 @@ function App() {
   // #region 'State Object'
   const [users, setUsers] = useState([])
   const [messages, setMessages] = useState([])
+
   const [conversations, setConversations] = useState([])
 
   const [currentUser, setCurrentUser] = useState(null)  
@@ -101,7 +102,8 @@ function App() {
                 logOut = {logOut}
                 users = {users}
                 currentUser = {currentUser}
-                setConversations ={setConversations}/>
+                setConversations ={setConversations}
+                setModal = {setModal}/>
           }>
           </Route>
 
@@ -119,9 +121,13 @@ function App() {
           path='/logged-in/:conversationId'
           element={
             <MainMenu 
-              currentUser={currentUser} 
-              // logOut={logOut} 
-              users={users} />
+              messages = {messages}
+              conversations = {conversations}
+              logOut = {logOut}
+              users = {users}
+              currentUser = {currentUser}
+              setConversations ={setConversations}
+              setModal = {setModal} />
             }
         />
 
