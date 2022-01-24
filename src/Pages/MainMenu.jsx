@@ -10,9 +10,6 @@ function MainMenu({messages, conversations, logOut, users,
     currentUser, setConversations, modal, setModal}) {
 
     // #region 'State and Decounstructing Objects'
-    // const {messages, conversations, logOut, users, 
-    //     currentUser, setConversations, setModal} = props
-
     const [currentConversation, setCurrentConversation] = useState(null)
 
     const params = useParams()
@@ -64,6 +61,8 @@ function MainMenu({messages, conversations, logOut, users,
     
       function createConversation (participantId) {
 
+        // setModal('start-chat')
+
         fetch('http://localhost:4000/conversations', {
           method: 'POST',
           headers: {
@@ -105,8 +104,12 @@ function MainMenu({messages, conversations, logOut, users,
                             src={currentUser.avatar}
                             alt=""
                         />
+
                         <h3>{currentUser.firstName}</h3>
-                        <button onClick={() => logOut()}>Log Out</button>
+                        
+                        <button onClick={() => logOut()}>
+                            Log Out
+                        </button>
 
 
                     </header>
@@ -118,7 +121,7 @@ function MainMenu({messages, conversations, logOut, users,
                             type="search"
                             name="messagesSearch"
                             placeholder="Search chats"
-                            value=""
+                            defaultValue=""
                         />
 
                     </form>
@@ -128,6 +131,7 @@ function MainMenu({messages, conversations, logOut, users,
                         conversations = {conversations}
                         currentUser = {currentUser}
                         users = {users}
+                        setModal = {setModal}
                     />
 
                 </aside>
@@ -159,7 +163,7 @@ function MainMenu({messages, conversations, logOut, users,
                                 type="text"
                                 placeholder="Type a message"
                                 rows="1"
-                                value=""
+                                defaultValue=""
                             />
                             
                             <button type="submit">
@@ -214,11 +218,6 @@ function MainMenu({messages, conversations, logOut, users,
                                 <button
                                     className='chat-button'
                                     onClick={() => {
-                                        // clicking on one of those users
-                                        // should start a conversation with them
-                                        // how do we start a conversation?
-                                        // - create a conversation on the server
-                                        // - update conversations state
                                         createConversation(user.id)
                                     }}
                                 >

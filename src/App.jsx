@@ -7,6 +7,7 @@ import MainMenu from './Pages/MainMenu'
 import Login from './Pages/Login'
 import Error from './Pages/Error'
 import NewUser from './Components/Modals/NewUser'
+// import NewChat from './Components/Modals/NewChat'
 // #endregion
 
 function App() {
@@ -141,6 +142,7 @@ function App() {
         {
           // #region 'Modals'
         }
+
         {modal === 'newUser' ? (
 
           <NewUser 
@@ -150,6 +152,14 @@ function App() {
           />
 
         ) : null}
+
+        {/* {modal === 'start-chat' ? (
+
+          <NewChat 
+            setModal = {setModal}
+          />
+
+        ) : null} */}
 
         {
           // #endregion

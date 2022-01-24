@@ -34,6 +34,13 @@
       "phoneNumber": "044040940",
       "avatar": "https://avatars.dicebear.com/api/avataaars/EdPutans.svg",
       "id": 5
+    },
+    {
+      "firstName": "Jurgen",
+      "lastName": "Interi",
+      "phoneNumber": "04504505949054905",
+      "avatar": "https://avatars.dicebear.com/api/avataaars/EdPutans.svg",
+      "id": 6
     }
   ],
   "messages": [
@@ -59,6 +66,21 @@
       "userId": 3,
       "participantId": 1,
       "id": 3
+    },
+    {
+      "userId": 1,
+      "participantId": 5,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "participantId": 4,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "participantId": 6,
+      "id": 6
     }
   ]
 }

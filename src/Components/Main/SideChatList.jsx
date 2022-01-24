@@ -3,7 +3,8 @@ import NewChatBtn from './NewChatBtn'
 
 function SideChatList(props) {
 
-    const {conversations, currentUser, users} = props
+    const randomId = Math.random()
+    const {conversations, currentUser, users, setModal} = props
 
     function talkingConversation(conversation) {
         // which id am I talking to
@@ -23,14 +24,19 @@ function SideChatList(props) {
 
             <ul>
 
-                <NewChatBtn />
+                <NewChatBtn
+                    key={randomId}
+                    setModal = {setModal}
+                />
 
                 {
                     conversations.map(conversation => {
-                        
+
+                        // const storeId = talkingConversation(Conversation)
+
                         return <Conversation 
                             talkingToUser = {talkingConversation(conversation)}
-                            // key = {talkingToUser.id}
+                            key = {talkingConversation(conversation).id}
                         />
                         
                     })  
